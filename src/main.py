@@ -1,11 +1,16 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, status
 from subprocess import Popen, PIPE
 
-app = FastAPI()
+app = FastAPI(title="SafeBoard API")
 
 
 myprocess = None
 
+
+# Документация
+# @app.get("/api/docs")
+# async def get_docs():
+#     return FastAPI().swagger_ui_html()
 
 
 # Запуск процесса
