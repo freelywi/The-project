@@ -7,12 +7,6 @@ app = FastAPI(title="SafeBoard API")
 myprocess = None
 
 
-# Документация
-# @app.get("/api/docs")
-# async def get_docs():
-#     return FastAPI().swagger_ui_html()
-
-
 # Запуск процесса
 @app.post("/api/{pn}/start")
 async def start_process(pn: str):
@@ -21,7 +15,7 @@ async def start_process(pn: str):
     if myprocess is not None and myprocess.poll() is None:
         raise HTTPException(status_code=409, detail="Process already running")
 
-    myprocess = Popen(["python", "process.py"], stdout=PIPE)
+    myprocess = Popen(["python", "src/process.py"], stdout=PIPE)
 
     return {"message": "Process started"}
 
